@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contact Us</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			background-image: url("https://as1.ftcdn.net/v2/jpg/04/54/57/54/1000_F_454575421_UCfZMQcs5ahwiXD1SicQbL7jmiaoJFR7.jpg");
+			font-family: Arial, sans-serif;
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.container {
+			max-width: 600px;
+			padding: 30px;
+			background-color: rgba(255, 255, 255, 0.8);
+			border: 1px solid #ddd;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+			font-size: large;
+			min-height: 100px;
+			border-radius: 10px;
+		}
+		.form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			height: 300px;
+		}
+		.input-field {
+			margin-bottom: 10px;
+			padding: 8px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			width: 100%;
+			height: fit-content;
+			font-size: large;
+		}
+		.submit-btn {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 8px 16px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			height: 40px;
+			font-size: large;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Contact Us</h1>
+		<form class="form">
+			<input type="text" placeholder="Name" class="input-field" required>
+			<input type="email" placeholder="Email" class="input-field" required>
+			<input type="tel" placeholder="Phone Number" class="input-field" required>
+			<textarea placeholder="Message" class="input-field"></textarea>
+			<input type="submit" value="Submit" class="submit-btn">
+		</form>
+	</div>
+
+	<script>
+		const form = document.querySelector('.form');
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const formData = new FormData(form);
+			const data = {};
+			for (const [key, value] of formData.entries()) {
+				data[key] = value;
+			}
+			console.log(data);
+			form.reset();
+		});
+	</script>
+</body>
+</html>

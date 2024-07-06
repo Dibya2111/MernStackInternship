@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <style>
+    body {
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #345fbb;
+    }
+
+    #about-us {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(231, 30, 67, 0.737);
+    }
+
+    h1 {
+      text-align: center;
+      color: #d03c77;
+      font-size: 2.5rem; /* Increased font size */
+      font-weight: 900; /* Bolder font weight */
+    }
+
+    p {
+      line-height: 1.5;
+      color: #110101f0;
+      font-size: larger;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="about-us"></div>
+
+  <script>
+    const companyInfo = {
+      name: "DJ BLOGS",
+      founderStory: "In a bustling city, DJ, known as Dibyajyoti, found himself on November 23, 2023, contemplating his love for travel. He decided to start his blog page titled 'DJ' to share his adventures and discoveries with the world.The idea sparked during a solo hike in the mountains when DJ stumbled upon a hidden waterfall. Inspired by the serene beauty and his desire to document such moments, he began writing. Each blog post became a vivid snapshot of his travels, from bustling markets in distant cities to quiet sunsets over tranquil lakes.DJ's blog wasn't just about destinations; it was a personal journey of exploration and connection. He shared practical tips for fellow travelers, but more importantly, he shared the emotional impact of each place he visited. Every story was infused with his passion for discovering new cultures, flavors, and landscapes.As the months passed, DJ's blog grew, attracting readers who sought inspiration and practical insights for their own journeys. Comments flooded in, sharing gratitude for uncovering hidden gems and capturing the essence of travel.By December, 'DJ' had become a digital diary, a testament to the transformative power of travel. It wasn't just about the places he visited; it was about the people he met, the lessons he learned, and the moments that shaped his wanderlust soul.",
+      founderImage: "DJ.jpg"
+    };
+
+    const aboutUsSection = document.getElementById("about-us");
+
+    const heading = document.createElement("h1");
+    heading.textContent = "About Us";
+    aboutUsSection.appendChild(heading);
+
+    const companyNamePara = document.createElement("p");
+    companyNamePara.textContent = `Company Name: ${companyInfo.name}`;
+    companyNamePara.classList.add("bold");
+    aboutUsSection.appendChild(companyNamePara);
+
+    const founderStoryPara = document.createElement("p");
+    founderStoryPara.textContent = `Founder Story: ${companyInfo.founderStory}`;
+    founderStoryPara.classList.add("bold");
+    aboutUsSection.appendChild(founderStoryPara);
+
+    const founderImage = document.createElement("img");
+    founderImage.src = companyInfo.founderImage;
+    founderImage.alt = "Founder Image";
+    aboutUsSection.appendChild(founderImage);
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Company</title>
+    <link rel="stylesheet" href="AS3.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="name">D.J BLOGS</div>
+            <div class="nav-menu">
+                <a href="./Aboutus.html">About Us</a>
+                <a href="#login">Login/Signup</a>
+                <a href="./contact.html">Contact Us</a>
+            </div>
+        </div>
+    </header>
+    <main id="main-content">
+        <!-- Content Will be added directly by the script tag -->
+    </main>
+    </body>
+    </html>
+    <script>
+        const pages = [
+            {
+                content: [
+                    { text: "Udaipur: Udaipur, often called the 'City of Lakes', is a historic city in the Indian state of Rajasthan. Known for its stunning lakes, palaces, and vibrant culture, Udaipur is a popular tourist destination. The magnificent City Palace complex, overlooking Lake Pichola, showcases the grandeur of Rajput architecture. The serene Lake Palace, now a luxury hotel, appears to float on the lake's waters, adding to the city's charm. Udaipur's colorful bazaars, traditional crafts, and cultural festivals offer a glimpse into Rajasthan's rich heritage, making it a must-visit destination.", img: "./City-Palace-Udaipur.jpg" },
+                    { text: "Sikkim: Sikkim, a small but picturesque state in northeastern India, is nestled in the Himalayas and offers some of the most stunning landscapes in the country. It is known for its pristine environment, rich biodiversity, and vibrant culture. Sikkim is home to the third-highest peak in the world, Mount Kanchenjunga, which provides a dramatic backdrop to the state's beautiful monasteries and vibrant towns. The capital city, Gangtok, offers a blend of modernity and tradition, while places like Tsomgo Lake and Yumthang Valley showcase the state's natural beauty.", img: "./sikkim-tourism.jpg" }
+               ]
+            },
+            {
+                content: [
+                    { text: "Taj Mahal: The Taj Mahal, located in Agra, India, is a breathtaking white marble mausoleum built by Emperor Shah Jahan in memory of his beloved wife Mumtaz Mahal. Completed in 1653, this UNESCO World Heritage site is renowned for its stunning Mughal architecture, intricate carvings, and beautiful gardens. The monument's perfect symmetry, the exquisite marble inlay work, and the serene Yamuna River backdrop make it an enduring symbol of eternal love and one of the most visited and photographed landmarks in the world.", img: "./Taj-Mahal-Agra-feature.jpg"},
+                    { text: "Kashmir, often referred to as 'Paradise on Earth', is a region in northern India known for its breathtaking natural beauty, nestled between the Great Himalayas and the Pir Panjal mountain range. The Kashmir Valley is famous for its stunning landscapes, including pristine lakes like Dal Lake and Nigeen Lake, lush green meadows, and vibrant gardens such as the Mughal Gardens. The region is also known for its rich cultural heritage, traditional handicrafts, and exquisite cuisine. Despite its political complexities, Kashmir remains a coveted destination for travelers seeking serene beauty, adventure, and a glimpse of its storied past.", img: "./kashmir.jpg" }
+                ]
+            },
+            {
+                content: [
+                    { text: "Kedarnath: Kedarnath is a sacred Hindu pilgrimage site situated in the Rudraprayag district of Uttarakhand, India. Nestled in the Garhwal Himalayas at an altitude of 3,583 meters, it is home to the revered Kedarnath Temple, dedicated to Lord Shiva. The temple, believed to be more than a thousand years old, attracts thousands of devotees annually, who trek through challenging terrains to seek blessings. The town offers breathtaking views of snow-capped peaks and alpine meadows, making it a significant spiritual and natural haven.", img: "https://wallpapercave.com/wp/wp4501800.jpg" },
+                    { text: "Koraput: Koraput, located in the state of Odisha, India, is a district known for its scenic beauty and rich tribal culture. Surrounded by lush green hills, forests, and waterfalls, Koraput is a haven for nature lovers. The area is also home to the famous Jagannath Temple, which resembles the Puri Jagannath Temple. Koraput's tribal communities contribute to its vibrant cultural tapestry, offering unique handicrafts, traditional dances, and festivals. The Duduma Waterfalls and the scenic Deomali Hills are among its notable attractions, making it a hidden gem for travelers.", img: "https://th.bing.com/th/id/OIP.CsDUWbwYkgKJ-X99BCmTEAHaEK?w=273&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" }
+                ]
+            }
+        ];
+
+        function loadPage(pageNumber) {
+            const page = pages[pageNumber - 1];
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = '';
+
+            for (let i = 0; i < page.content.length; i++) {
+                const container = document.createElement('div');
+                container.className = 'container';
+
+                const textDiv = document.createElement('div');
+                textDiv.className = 'text';
+                textDiv.innerHTML = `<p>${page.content[i].text}</p>`;
+
+                const imageDiv = document.createElement('div');
+                imageDiv.className = 'image';
+                imageDiv.innerHTML = `<img src="${page.content[i].img}" alt="Place Image ${i + 1}">`;
+
+                if ((i + 1) % 2 === 0) {
+                    container.appendChild(textDiv);
+                    container.appendChild(imageDiv);
+                } else {
+                    container.appendChild(imageDiv);
+                    container.appendChild(textDiv);
+                }
+
+                mainContent.appendChild(container);
+            }
+
+            const nextButton = document.createElement('div');
+            nextButton.className = 'next-button';
+            nextButton.innerHTML = `<a href="#" onclick="loadPage(${pageNumber % pages.length + 1})">Next</a>`;
+            mainContent.appendChild(nextButton);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage(1);
+        });
+    </script>
