@@ -12,16 +12,20 @@
             <div class="name">D.J BLOGS</div>
             <div class="nav-menu">
                 <a href="./Aboutus.html">About Us</a>
-                <a href="#login">Login/Signup</a>
+                <a href="./Login.html">Login/Signup</a>
                 <a href="./contact.html">Contact Us</a>
             </div>
         </div>
     </header>
-    <main id="main-content">
-        <!-- Content Will be added directly by the script tag -->
-    </main>
-    </body>
-    </html>
+    <div id="intro-section">
+        <p>Please introduce yourself:</p>
+        <input type="text" id="name-input" placeholder="Enter Your Name">
+        <p>Please Enter Your Age:-</p>
+        <input type="number" id="age-input" placeholder="Enter Your Age">
+        <br>
+        <button id="submit-btn">Submit</button>
+    </div>
+    <main id="main-content"></main>
     <script>
         const pages = [
             {
@@ -44,6 +48,8 @@
             }
         ];
 
+        let currentPage = 1;
+
         function loadPage(pageNumber) {
             const page = pages[pageNumber - 1];
             const mainContent = document.getElementById('main-content');
@@ -62,11 +68,11 @@
                 imageDiv.innerHTML = `<img src="${page.content[i].img}" alt="Place Image ${i + 1}">`;
 
                 if ((i + 1) % 2 === 0) {
-                    container.appendChild(textDiv);
                     container.appendChild(imageDiv);
+                    container.appendChild(textDiv);
                 } else {
-                    container.appendChild(imageDiv);
                     container.appendChild(textDiv);
+                    container.appendChild(imageDiv);
                 }
 
                 mainContent.appendChild(container);
@@ -78,7 +84,22 @@
             mainContent.appendChild(nextButton);
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadPage(1);
+        const submitBtn = document.getElementById('submit-btn');
+        const nameInput = document.getElementById('name-input');
+        const ageInput = document.getElementById('age-input');
+
+        submitBtn.addEventListener('click', () => {
+            const name = nameInput.value.trim();
+            const age = ageInput.value.trim();
+
+            if (name === '' || age === '') {
+                alert('Please enter your name and age');
+            } else {
+                const introSection = document.getElementById('intro-section');
+                introSection.style.display = 'none';
+                loadPage(currentPage);
+            }
         });
     </script>
+</body>
+</html>

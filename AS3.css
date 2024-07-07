@@ -12,6 +12,40 @@ header {
     font-size: larger;
 }
 
+#intro-section {
+    text-align: center; /* Center the content horizontally */
+    margin: 0 auto; /* Center the div horizontally */
+    max-width: 500px; /* Set a maximum width for the div */
+}
+
+#intro-section p {
+    font-weight: bold;
+    font-size: 1.5rem; /* Increase the font size */
+}
+#submit-btn
+{
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: darkblue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#submit-btn:hover{
+    background-color: crimson;
+    font-size: medium;
+}
+
+#name-input{
+    font-size: 1.3rem;
+}
+
+#age-input{
+    font-size: 1.3rem;
+}
 .navbar {
     display: flex;
     justify-content: space-between;
