@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&J Company</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background Image */
+        body {
+            /* background-image: url('https://example.com/background.jpg'); */
+            background-color: aquamarine;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: rgba(219, 69, 69, 0.838);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .product-card {
+            background-color: rgba(245, 245, 245, 0.9);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 10px rgba(35, 152, 210, 0.826);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 0 20px rgba(203, 10, 10, 0.628);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            margin-top: 10px;
+        }
+
+        .product-card p {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 320px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" onclick="redirectToHomepage()"><h1>D&J Company</h1></a>
+        <div>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="addproduct.html">Add Product</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="product-grid"></div>
+    </main>
+
+    <script>
+        // Function to create a product card element
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+
+            const image = document.createElement('img');
+            image.src = product.image;
+            image.alt = product.name;
+
+            const name = document.createElement('h3');
+            name.textContent = product.name;
+
+            const price = document.createElement('p');
+            price.textContent = `Price: ${product.price}`;
+
+            card.appendChild(image);
+            card.appendChild(name);
+            card.appendChild(price);
+
+            return card;
+        }
+
+        // Get products from local storage
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+
+        // Display products on the page
+        const productGrid = document.querySelector('.product-grid');
+        products.forEach(product => {
+            const card = createProductCard(product);
+            productGrid.appendChild(card);
+        });
+
+        // Redirect to homepage when logo is clicked
+        function redirectToHomepage() {
+            window.location.href = 'Homepage.html';
+        }
+    </script>
+</body>
+</html>
