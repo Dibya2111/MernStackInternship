@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Page</title>
+    <style>
+        /* Existing styles... */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Product</h2>
+        <input type="text" id="productId" placeholder="Product ID">
+        <input type="text" id="productTitle" placeholder="Product Title">
+        <input type="text" id="productPrice" placeholder="Product Price">
+        <input type="text" id="productDescription" placeholder="Product Description">
+        <input type="text" id="productCategory" placeholder="Product Category">
+        <input type="text" id="productImage" placeholder="Product Image URL">
+        <input type="text" id="productRatingRate" placeholder="Product Rating Rate">
+        <input type="text" id="productRatingCount" placeholder="Product Rating Count">
+        <button onclick="updateProduct()">Update Product</button>
+    </div>
+
+    <script>
+        const productToUpdate = JSON.parse(localStorage.getItem('productToUpdate'));
+
+        if (productToUpdate) {
+            document.getElementById('productId').value = productToUpdate.id;
+            document.getElementById('productTitle').value = productToUpdate.title;
+            document.getElementById('productPrice').value = productToUpdate.price;
+            document.getElementById('productDescription').value = productToUpdate.description;
+            document.getElementById('productCategory').value = productToUpdate.category;
+            document.getElementById('productImage').value = productToUpdate.image;
+            document.getElementById('productRatingRate').value = productToUpdate.rating.rate;
+            document.getElementById('productRatingCount').value = productToUpdate.rating.count;
+        }
+
+        function updateProduct() {
+            const id = document.getElementById('productId').value;
+            const title = document.getElementById('productTitle').value;
+            const price = document.getElementById('productPrice').value;
+            const description = document.getElementById('productDescription').value;
+            const category = document.getElementById('productCategory').value;
+            const image = document.getElementById('productImage').value;
+            const ratingRate = document.getElementById('productRatingRate').value;
+            const ratingCount = document.getElementById('productRatingCount').value;
+
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const updatedProducts = products.map(product => {
+                if (product.id === parseInt(productToUpdate.id)) {
+                    return {
+                        id: parseInt(id),
+                        title,
+                        price: parseFloat(price),
+                        description,
+                        category,
+                        image,
+                        rating: {
+                            rate: parseFloat(ratingRate),
+                            count: parseInt(ratingCount)
+                        }
+                    };
+                }
+                return product;
+            });
+
+            localStorage.setItem('products', JSON.stringify(updatedProducts));
+            alert('Product updated successfully!');
+            window.location.href = 'Homepage.html'; // Redirect to the home page
+        }
+
+    </script>
+</body>
+</html>
