@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&J Company</title>
+    <style>
+       /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background Image */
+        body {
+            /* background-image: url('https://example.com/background.jpg'); */
+            background-color: aquamarine;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: rgba(219, 69, 69, 0.838);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .product-card {
+            background-color: rgba(245, 245, 245, 0.9);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 10px rgba(35, 152, 210, 0.826);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 0 20px rgba(203, 10, 10, 0.628);
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            margin-top: 10px;
+        }
+
+        .product-card p {
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .product-card button {
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .product-card button:not(:last-child) {
+            margin-right: 10px; /* Add spacing between buttons */
+        }
+
+        .product-card button:hover {
+            background-color: #e65050;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 320px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" onclick="redirectToHomepage()"><h1>D&J Company</h1></a>
+        <div>
+            <a href="login.html">Login</a>
+            <a href="signup.html">Sign Up</a>
+            <a href="addproduct.html">Add Product</a>
+            <a href="Cart.html">Cart</a>
+        </div>
+    </nav>
+
+    <main>
+        <div class="product-grid"></div>
+    </main>
+
+    <script>
+        // Function to create a product card element
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+
+            const image = document.createElement('img');
+            image.src = product.image;
+            image.alt = product.title;
+
+            const name = document.createElement('h3');
+            name.textContent = product.title;
+
+            const price = document.createElement('p');
+            price.textContent = `Price: ${product.price}`;
+
+            const description = document.createElement('p');
+            description.textContent = `Description: ${product.description}`;
+
+            const rating = document.createElement('p');
+            rating.textContent = `Rating: ${product.rating.rate} (${product.rating.count} reviews)`;
+
+            const addToCartBtn = document.createElement('button');
+            addToCartBtn.textContent = 'Add to Cart';
+            addToCartBtn.addEventListener('click', () => addToCart(product));
+
+            const updateBtn = document.createElement('button');
+            updateBtn.textContent = 'Update';
+            updateBtn.addEventListener('click', () => {
+                localStorage.setItem('productToUpdate', JSON.stringify(product));
+                window.location.href = 'update.html';
+            });
+
+            card.appendChild(image);
+            card.appendChild(name);
+            card.appendChild(price);
+            card.appendChild(description);
+            card.appendChild(rating);
+            card.appendChild(addToCartBtn);
+            card.appendChild(updateBtn);
+
+            return card;
+        }
+
+        // Initial products data
+        let products = JSON.parse(localStorage.getItem('products')) ||async function fetchProducts() {
+            try {
+                const response = await fetch('https://fakestoreapi.com/products');
+                const products = await response.json();
+                localStorage.setItem('products', JSON.stringify(products));
+                displayProducts(products); // Render the initial list of products
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        // Check if there is data in local storage
+        const storedProducts = JSON.parse(localStorage.getItem('products'));
+        if (storedProducts && storedProducts.length > 0) {
+            products = storedProducts;
+        }
+
+        // Store products data in local storage
+        localStorage.setItem('products', JSON.stringify(products));
+
+        // Initialize cart data in local storage if it doesn't exist
+        if (!localStorage.getItem('cart')) {
+            localStorage.setItem('cart', JSON.stringify([]));
+        }
+
+        // Display products on the page
+        const productGrid = document.querySelector('.product-grid');
+        products.forEach(product => {
+            const card = createProductCard(product);
+            productGrid.appendChild(card);
+        });
+
+        // Function to add a new product
+        function addProduct(product) {
+            products.push(product);
+            localStorage.setItem('products', JSON.stringify(products));
+            const card = createProductCard(product);
+            productGrid.appendChild(card);
+        }
+
+        // Function to add a product to the cart
+        function addToCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${product.title} added to cart!`);
+        }
+
+        // Redirect to homepage when logo is clicked
+        function redirectToHomepage() {
+            window.location.href = 'Homepage.html';
+        }
+    </script>
+</body>
+</html>
