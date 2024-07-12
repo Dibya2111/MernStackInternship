@@ -1,0 +1,168 @@
+/* App.css */
+
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f39c12;
+    --background-color: #8a2be2;
+    --text-color: #333;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s ease;
+  }
+  
+  .App {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  form {
+    display: flex;
+    margin-bottom: 2rem;
+  }
+  
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 0.75rem;
+    font-size: 1.3rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px 0 0 5px;
+    transition: all 0.3s ease;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.3rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  li {
+    background-color: #fff;
+    margin-bottom: 1rem;
+    padding: 1.2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.5s ease-out;
+    font-size: 1.3rem;
+  }
+  
+  li > * {
+    margin-right: 15px;
+  }
+  
+  li > *:last-child {
+    margin-right: 0;
+  }
+  
+  li span {
+    font-size: 1.3rem;
+  }
+  
+  li button {
+    margin-left: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+  
+  li button:first-of-type {
+    background-color: var(--secondary-color);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  
+  /* ... (keep all the existing CSS above) ... */
+
+@media (max-width: 1024px) {
+    .App {
+      max-width: 90%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .App {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+  
+    h1 {
+      font-size: 2.5rem;
+    }
+  
+    input[type="text"], button {
+      font-size: 1.2rem;
+    }
+  
+    li {
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .App {
+      margin: 0.5rem;
+      padding: 1rem;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    form {
+      flex-direction: column;
+    }
+  
+    input[type="text"], button {
+      width: 100%;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+      font-size: 1.1rem;
+    }
+  
+    li {
+      flex-direction: column;
+      align-items: flex-start;
+      font-size: 1.1rem;
+    }
+  
+    li button {
+      margin-top: 0.5rem;
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+  
