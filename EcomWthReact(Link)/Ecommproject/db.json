@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": "633c",
+      "title": "Ladies Purse",
+      "price": 340,
+      "description": "A nice Purse with good stitched",
+      "imageUrl": "https://th.bing.com/th?id=OIP.k-roWmGhy8B0hXqeMCggzgHaHo&w=246&h=253&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",
+      "rating": 3.9,
+      "reviewCount": 345
+    },
+    {
+      "id": "1594",
+      "title": "A Jute Bag",
+      "price": 120,
+      "description": "A Goodd bag Made Up of Jute.",
+      "imageUrl": "https://th.bing.com/th?id=OIP.m2APYJwNzw9P0W-nU-fEigHaFD&w=302&h=206&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2",
+      "rating": 4.3,
+      "reviewCount": 321
+    }
+  ],
+  "Userdata": [
+    
+  ]
+}
