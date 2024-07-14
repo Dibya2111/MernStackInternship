@@ -49,14 +49,30 @@ function ProductForm() {
     <>
       <style>
         {`
-        /* Add some basic styles for the form */
+        body {
+            padding-top: 60px;
+            background-image: url('https://th.bing.com/th/id/R.178662aeb328ff2138591a89ec3ada45?rik=4xWJBnxvT8%2f6kg&riu=http%3a%2f%2fwallpapercave.com%2fwp%2f0dSFyjG.jpg&ehk=94nuM0RM%2bK%2fHwQGEZpmcfp33vUsw5E%2fU3Gc3p6qN8PE%3d&risl=&pid=ImgRaw&r=0');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #your-navbar-color;
+        }
+
         form {
             max-width: 400px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
             background-color: #e1b0b0;
             border-radius: 5px;
-            margin-top: 100px;
             text-align: center;
             animation: fadeIn 1s ease;
         }
@@ -104,15 +120,11 @@ function ProductForm() {
             background-color: #45a049;
         }
 
-        body {
-            background-image: url('https://th.bing.com/th/id/R.178662aeb328ff2138591a89ec3ada45?rik=4xWJBnxvT8%2f6kg&riu=http%3a%2f%2fwallpapercave.com%2fwp%2f0dSFyjG.jpg&ehk=94nuM0RM%2bK%2fHwQGEZpmcfp33vUsw5E%2fU3Gc3p6qN8PE%3d&risl=&pid=ImgRaw&r=0');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
         @media (max-width: 767px) {
+            body {
+                padding-top: 0;
+            }
+
             nav {
                 position: static;
             }
@@ -126,7 +138,7 @@ function ProductForm() {
             form {
                 max-width: 100%;
                 padding: 10px;
-                margin-top: 60px;
+                margin-top: 20px;
             }
         }
 

@@ -6,7 +6,6 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [userData, setUserData] = useState([]);
-  const [loginFailed, setLoginFailed] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,10 +37,8 @@ const LoginForm = () => {
     if (user) {
       window.alert('Login successful');
       navigate('/');
-      setLoginFailed(false);
     } else {
       window.alert('Login failed. Please sign up.');
-      setLoginFailed(true);
     }
   };
 
@@ -71,6 +68,7 @@ const LoginForm = () => {
           }
 
           body {
+            padding-top: 60px;
             background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffd1ff);
             background-size: 400% 400%;
             animation: gradient 15s ease infinite;
@@ -80,6 +78,14 @@ const LoginForm = () => {
             align-items: center;
             font-family: Arial, sans-serif;
           }
+          nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #your-navbar-color;
+        }
 
           /* Form Styling */
           .login-form {
@@ -211,12 +217,10 @@ const LoginForm = () => {
           </div>
           <button type="submit">Login</button>
         </form>
-        {loginFailed && (
-          <div id="signupPrompt">
-            <p>Don't have an account?</p>
-            <button onClick={handleSignUp}>Sign Up</button>
-          </div>
-        )}
+        <div id="signupPrompt">
+          <p>Don't have an account?</p>
+          <button onClick={handleSignUp}>Sign Up</button>
+        </div>
       </div>
     </>
   );

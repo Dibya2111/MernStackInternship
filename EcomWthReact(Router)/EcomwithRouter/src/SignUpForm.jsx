@@ -84,6 +84,7 @@ const SignUpForm = () => {
           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
           body {
+            padding-top: 60px;
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
@@ -100,6 +101,14 @@ const SignUpForm = () => {
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
           }
+          nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #your-navbar-color;
+        }  
 
           .container {
             background-color: rgba(255, 255, 255, 0.8);
